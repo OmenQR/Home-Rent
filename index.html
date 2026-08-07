@@ -1,376 +1,261 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1 BHK Flat for Rent in Khagaria</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --accent: #2563eb;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1f2937;
+            --text-light: #4b5563;
+        }
 
-<title>1 BHK House for Rent</title>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
 
-body {
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
-    color: #222;
-    line-height: 1.6;
-}
+        header {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1rem;
+        }
 
-.container {
-    width: 92%;
-    max-width: 900px;
-    margin: auto;
-}
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
 
-/* HEADER */
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
 
-.header {
-    background: #111;
-    color: white;
-    text-align: center;
-    padding: 35px 20px;
-}
+        .container {
+            max-width: 900px;
+            margin: -20px auto 0;
+            padding: 0 1rem;
+        }
 
-.header h1 {
-    font-size: 32px;
-    margin-bottom: 8px;
-}
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
 
-.header p {
-    font-size: 17px;
-    color: #ddd;
-}
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
 
-/* IMAGES */
+        .rent-banner {
+            background-color: #dbeafe;
+            border-left: 4px solid var(--accent);
+            padding: 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            color: var(--primary);
+            text-align: center;
+        }
 
-.property-image {
-    width: 100%;
-    display: block;
-    margin: 25px auto;
-    border-radius: 15px;
-    max-height: 600px;
-    object-fit: cover;
-}
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
 
-/* CARDS */
+        .detail-item {
+            background: #f1f5f9;
+            padding: 0.8rem;
+            border-radius: 8px;
+        }
 
-.card {
-    background: white;
-    padding: 25px;
-    margin: 25px 0;
-    border-radius: 15px;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
-}
+        .detail-item span {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
 
-.card h2 {
-    margin-bottom: 15px;
-    font-size: 25px;
-}
+        .detail-item strong {
+            font-size: 1rem;
+        }
 
-/* PRICE */
+        .amenities-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.75rem;
+            list-style: none;
+        }
 
-.price {
-    background: #111;
-    color: white;
-    text-align: center;
-    padding: 25px;
-    margin: 25px 0;
-    border-radius: 15px;
-}
+        .amenities-list li {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 0.6rem 0.8rem;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-.price h2 {
-    font-size: 32px;
-    margin: 5px 0;
-}
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
 
-.price p {
-    color: #ddd;
-}
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s;
+        }
 
-/* DETAILS */
+        .gallery img:hover {
+            transform: scale(1.02);
+        }
 
-.details {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-}
+        .location-info p {
+            margin-bottom: 0.5rem;
+        }
 
-.detail {
-    background: #f3f3f3;
-    padding: 15px;
-    border-radius: 10px;
-}
+        .cta-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            padding: 0.8rem 1rem;
+            text-align: center;
+            box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
 
-.detail strong {
-    display: block;
-}
+        .cta-button {
+            display: inline-block;
+            background-color: #25d366;
+            color: white;
+            padding: 0.75rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
 
-/* AMENITIES */
-
-.amenities {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-}
-
-.amenity {
-    background: #f3f3f3;
-    padding: 13px;
-    border-radius: 9px;
-}
-
-/* CONTACT */
-
-.contact {
-    background: #111;
-    color: white;
-    text-align: center;
-    padding: 35px 20px;
-    margin-top: 30px;
-}
-
-.contact h2 {
-    margin-bottom: 10px;
-}
-
-.phone {
-    font-size: 20px;
-    margin-top: 15px;
-}
-
-.whatsapp {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 14px 28px;
-    background: #25D366;
-    color: white;
-    text-decoration: none;
-    border-radius: 30px;
-    font-weight: bold;
-}
-
-/* FOOTER */
-
-footer {
-    background: #111;
-    color: #999;
-    text-align: center;
-    padding: 20px;
-    font-size: 13px;
-}
-
-/* MOBILE */
-
-@media (max-width: 600px) {
-
-    .header h1 {
-        font-size: 27px;
-    }
-
-    .details,
-    .amenities {
-        grid-template-columns: 1fr;
-    }
-
-    .card {
-        padding: 20px;
-    }
-
-    .price h2 {
-        font-size: 27px;
-    }
-}
-</style>
+        .cta-button.phone {
+            background-color: var(--accent);
+            margin-right: 0.5rem;
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- HEADER -->
+    <header>
+        <h1>1 BHK Flat For Rent</h1>
+        <p>East Cabin Road, Khagaria</p>
+    </header>
 
-<div class="header">
+    <div class="container">
 
-    <h1>🏠 1 BHK HOUSE FOR RENT</h1>
-
-    <p>Beautiful & Comfortable Home Available</p>
-
-</div>
-
-
-<div class="container">
-
-
-<!-- FIRST HOUSE IMAGE -->
-
-<img src="house1.jpg"
-     alt="House"
-     class="property-image">
-
-
-<!-- ABOUT -->
-
-<div class="card">
-
-    <h2>🏡 About the Property</h2>
-
-    <p>
-        A beautiful and well-maintained 1 BHK house
-        is available for rent.
-
-        Perfect for a small family, couple or working
-        professional.
-    </p>
-
-</div>
-
-
-<!-- PRICE -->
-
-<div class="price">
-
-    <p>Monthly Rent</p>
-
-    <h2>₹8,000 / Month</h2>
-
-    <p>Security Deposit: ₹25,000</p>
-
-</div>
-
-
-<!-- SECOND IMAGE -->
-
-<img src="house2.jpg"
-     alt="House Interior"
-     class="property-image">
-
-
-<!-- PROPERTY DETAILS -->
-
-<div class="card">
-
-    <h2>📋 Property Details</h2>
-
-    <div class="details">
-
-        <div class="detail">
-            <strong>🛏️ Type</strong>
-            1 BHK
+        <!-- About Property -->
+        <div class="card">
+            <h2>About The Property</h2>
+            <p>Yeh ek <strong>brand new aur well-maintained property</strong> hai jo choti family ya working professionals ke liye ekdam perfect hai. Market area ke paas hone ke kaaran daily zarurat ka sabhi saman aasani se mil jata hai.</p>
+            <br>
+            <div class="rent-banner">
+                💰 Monthly Rent & Visiting: Contact Us directly or Visit the Property.
+            </div>
         </div>
 
-        <div class="detail">
-            <strong>📐 Area</strong>
-            650 sq.ft.
+        <!-- Property Details -->
+        <div class="card">
+            <h2>Key Details</h2>
+            <div class="details-grid">
+                <div class="detail-item">
+                    <span>Property Type</span>
+                    <strong>1 BHK Flat</strong>
+                </div>
+                <div class="detail-item">
+                    <span>Super Area</span>
+                    <strong>450 Sq. Ft.</strong>
+                </div>
+                <div class="detail-item">
+                    <span>Floor</span>
+                    <strong>1st & 2nd Floor Available</strong>
+                </div>
+                <div class="detail-item">
+                    <span>Configuration</span>
+                    <strong>1 Hall/Bedroom, 1 Kitchen, 1 Bathroom</strong>
+                </div>
+            </div>
         </div>
 
-        <div class="detail">
-            <strong>🚿 Bathroom</strong>
-            1 Bathroom
+        <!-- Amenities -->
+        <div class="card">
+            <h2>Amenities & Highlights</h2>
+            <ul class="amenities-list">
+                <li>💧 24*7 Water Supply</li>
+                <li>⚡ Electricity Connection</li>
+                <li>🛵 2-Wheeler Parking Available</li>
+                <li>📹 Safe Area under Surveillance</li>
+                <li>💨 Good Ventilation & Natural Light</li>
+                <li>📍 Prime Location in Market Area</li>
+            </ul>
         </div>
 
-        <div class="detail">
-            <strong>🍳 Kitchen</strong>
-            1 Kitchen
+        <!-- Photo Gallery -->
+        <div class="card">
+            <h2>Property Gallery</h2>
+            <div class="gallery">
+                <!-- Apni images ke path yahan badlein -->
+                <img src="image1.jpg" alt="Property Image 1">
+                <img src="image2.jpg" alt="Property Image 2">
+                <img src="image3.jpg" alt="Property Image 3">
+                <img src="image4.jpg" alt="Property Image 4">
+                <img src="image5.jpg" alt="Property Image 5">
+                <img src="image6.jpg" alt="Property Image 6">
+            </div>
         </div>
 
-        <div class="detail">
-            <strong>🚗 Parking</strong>
-            Available
-        </div>
-
-        <div class="detail">
-            <strong>🏢 Floor</strong>
-            Ground Floor
+        <!-- Location -->
+        <div class="card">
+            <h2>Location & Address</h2>
+            <div class="location-info">
+                <p><strong>Address:</strong> East Cabin Road, Hajipur Road, Ward No. 21</p>
+                <p><strong>Landmark:</strong> Just opposite Durga Temple</p>
+                <p><strong>City:</strong> Khagaria, Bihar</p>
+            </div>
         </div>
 
     </div>
 
-</div>
-
-
-<!-- THIRD IMAGE -->
-
-<img src="house3.jpg"
-     alt="House"
-     class="property-image">
-
-
-<!-- AMENITIES -->
-
-<div class="card">
-
-    <h2>✨ Amenities</h2>
-
-    <div class="amenities">
-
-        <div class="amenity">💧 24×7 Water Supply</div>
-        <div class="amenity">⚡ Electricity</div>
-        <div class="amenity">🚗 Parking</div>
-        <div class="amenity">🔒 Safe Area</div>
-        <div class="amenity">🌬️ Good Ventilation</div>
-        <div class="amenity">📍 Good Location</div>
-
+    <!-- Contact Sticky Footer -->
+    <div class="cta-bar">
+        <p style="margin-bottom: 0.3rem; font-size: 0.9rem; font-weight: bold;">Interested in this property?</p>
+        <a href="tel:+919934869909" class="cta-button phone">📞 Call: +91 9934869909</a>
+        <a href="https://wa.me/919934869909?text=Hi,%20I%20am%20interested%20in%20your%201%20BHK%20flat%20for%20rent." class="cta-button" target="_blank">💬 WhatsApp</a>
     </div>
-
-</div>
-
-
-<!-- LOCATION -->
-
-<div class="card">
-
-    <h2>📍 Location</h2>
-
-    <p>
-        Your Location Name<br>
-        Near Main Road<br>
-        Your City, Bihar
-    </p>
-
-</div>
-
-
-<!-- FOURTH IMAGE -->
-
-<img src="house4.jpg"
-     alt="House"
-     class="property-image">
-
-
-</div>
-
-
-<!-- CONTACT -->
-
-<div class="contact">
-
-    <h2>📞 Interested?</h2>
-
-    <p>Contact us for more information or to visit the property.</p>
-
-    <p class="phone">
-        📱 +91 98765 43210
-    </p>
-
-    <a
-        class="whatsapp"
-        href="https://wa.me/919876543210"
-        target="_blank">
-
-        💬 Contact on WhatsApp
-
-    </a>
-
-</div>
-
-
-<footer>
-
-    © 2026 Property Listing
-
-</footer>
 
 </body>
 </html>
