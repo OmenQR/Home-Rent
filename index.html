@@ -408,8 +408,392 @@
             }
 
         });
+<script>
 
-    </script>
+/* =====================================================
+   LIGHTBOX
+   ===================================================== */
+
+function openLightbox(image) {
+
+    const lightbox =
+        document.getElementById("lightbox");
+
+    const lightboxImage =
+        document.getElementById("lightbox-image");
+
+
+    lightboxImage.src = image.src;
+
+    lightbox.classList.add("active");
+
+    document.body.style.overflow = "hidden";
+
+}
+
+
+function closeLightbox() {
+
+    const lightbox =
+        document.getElementById("lightbox");
+
+
+    lightbox.classList.remove("active");
+
+    document.body.style.overflow = "auto";
+
+}
+
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+
+            closeLightbox();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   SCROLL ENGINE
+   ===================================================== */
+
+let lastScrollY = window.scrollY;
+
+let scrollSpeed = 0;
+
+let targetSpeed = 0;
+
+let scrollDirection = 1;
+
+let scrollTimeout;
+
+let ticking = false;
+
+
+/* Smooth animation values */
+
+let currentSpeed = 0;
+
+let currentParallax = 0;
+
+
+/* =====================================================
+   CALCULATE SCROLL
+   ===================================================== */
+
+function handleScroll() {
+
+    const currentY = window.scrollY;
+
+    const difference =
+        currentY - lastScrollY;
+
+
+    /* Direction */
+
+    if (difference !== 0) {
+
+        scrollDirection =
+            difference > 0 ? 1 : -1;
+
+    }
+
+
+    /*
+       Convert scroll distance into
+       animation speed.
+
+       Bigger scroll = faster animation.
+    */
+
+    targetSpeed =
+        Math.min(
+            Math.abs(difference) * 1.8,
+            25
+        );
+
+
+    /*
+       This controls the overall
+       parallax movement.
+    */
+
+    currentParallax =
+        currentY * scrollDirection;
+
+
+    document.documentElement.style
+        .setProperty(
+            "--scroll-direction",
+            scrollDirection
+        );
+
+
+    document.body.classList.add(
+        "is-scrolling"
+    );
+
+
+    /* Stop state */
+
+    clearTimeout(scrollTimeout);
+
+
+    scrollTimeout = setTimeout(
+        () => {
+
+            targetSpeed = 0;
+
+            document.body.classList.remove(
+                "is-scrolling"
+            );
+
+        },
+        120
+    );
+
+
+    lastScrollY = currentY;
+
+}
+
+
+/* Passive = smoother mobile scrolling */
+
+window.addEventListener(
+    "scroll",
+    handleScroll,
+    { passive: true }
+);
+
+
+/* =====================================================
+   ANIMATION LOOP
+   ===================================================== */
+
+function animateScrollEffects() {
+
+    /*
+       Smoothly approach target speed.
+    */
+
+    currentSpeed +=
+        (targetSpeed - currentSpeed) * 0.12;
+
+
+    /*
+       Smooth parallax.
+    */
+
+    currentParallax +=
+        (
+            window.scrollY *
+            scrollDirection -
+            currentParallax
+        ) * 0.08;
+
+
+    /*
+       Send values to CSS.
+    */
+
+    document.documentElement.style
+        .setProperty(
+            "--scroll-speed",
+            currentSpeed.toFixed(2)
+        );
+
+
+    document.documentElement.style
+        .setProperty(
+            "--scroll-glow",
+            Math.min(
+                currentSpeed / 10,
+                3
+            ).toFixed(2)
+        );
+
+
+    document.documentElement.style
+        .setProperty(
+            "--parallax-y",
+            currentParallax.toFixed(1) + "px"
+        );
+
+
+    requestAnimationFrame(
+        animateScrollEffects
+    );
+
+}
+
+
+animateScrollEffects();
+
+
+/* =====================================================
+   MOUSE PARALLAX
+   Desktop only
+   ===================================================== */
+
+if (
+    window.matchMedia(
+        "(hover: hover) and (pointer: fine)"
+    ).matches
+) {
+
+    window.addEventListener(
+        "mousemove",
+        function(event) {
+
+            const x =
+                (event.clientX / window.innerWidth)
+                - 0.5;
+
+
+            const y =
+                (event.clientY / window.innerHeight)
+                - 0.5;
+
+
+            document.documentElement.style
+                .setProperty(
+                    "--mouse-x",
+                    x.toFixed(3)
+                );
+
+
+            document.documentElement.style
+                .setProperty(
+                    "--mouse-y",
+                    y.toFixed(3)
+                );
+
+        },
+        { passive: true }
+    );
+
+}
+
+
+/* =====================================================
+   SCROLL REVEAL
+   ===================================================== */
+
+const revealElements = document.querySelectorAll(
+    ".section-heading, " +
+    ".about-text, " +
+    ".rent-card, " +
+    ".detail-card, " +
+    ".amenity, " +
+    ".gallery-item, " +
+    ".location-card, " +
+    ".contact-card"
+);
+
+
+revealElements.forEach(
+    element => {
+
+        element.classList.add(
+            "scroll-reveal"
+        );
+
+    }
+);
+
+
+const revealObserver =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(
+                entry => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+                    }
+
+                }
+            );
+
+        },
+        {
+            threshold: 0.12,
+
+            rootMargin:
+                "0px 0px -50px 0px"
+        }
+    );
+
+
+revealElements.forEach(
+    element => {
+
+        revealObserver.observe(
+            element
+        );
+
+    }
+);
+
+
+/* =====================================================
+   STAGGER REVEAL FOR CARDS
+   ===================================================== */
+
+document
+    .querySelectorAll(
+        ".details-grid, .amenities-grid, .gallery"
+    )
+    .forEach(
+        grid => {
+
+            const children =
+                grid.children;
+
+
+            Array.from(children).forEach(
+                (child, index) => {
+
+                    child.style.transitionDelay =
+                        `${index * 0.06}s`;
+
+                }
+            );
+
+        }
+    );
+
+
+/* =====================================================
+   INITIALIZE HERO
+   ===================================================== */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        document.body.classList.add(
+            "page-loaded"
+        );
+
+    }
+);
+
+</script>
 
 </body>
 </html>
